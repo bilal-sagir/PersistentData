@@ -26,7 +26,7 @@ class ViewController: UIViewController
         if let data = try? Data(contentsOf: dataPath){
             do{
                 let foundUser = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? User
-                print("found\(foundUser?.name)")
+                print("found: \(foundUser?.name)")
             }catch{}
         }
     }
