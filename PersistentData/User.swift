@@ -1,6 +1,6 @@
 import Foundation
 
-class User: NSCoding
+class User: NSObject, NSCoding
 
 {
     var name: String

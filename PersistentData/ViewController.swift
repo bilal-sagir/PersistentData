@@ -11,13 +11,32 @@ class ViewController: UIViewController
     
     func write()
     {
+        let dataPath = docsURL.appendingPathComponent("my_data.plist")
         
+        let archiver = try? NSKeyedArchiver.archivedData(withRootObject: user, requiringSecureCoding: false)
+        
+        try? archiver?.write(to: dataPath)
+        
+       //print(dataPath)
+    }
+    
+    func read(){
+        let dataPath = docsURL.appendingPathComponent("my_data.plist")
+        
+        if let data = try? Data(contentsOf: dataPath){
+            do{
+                let foundUser = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? User
+                print("found\(foundUser?.name)")
+            }catch{}
+        }
     }
     
 
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        //write()
+        read()
     }
 
 }
